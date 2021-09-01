@@ -37,10 +37,15 @@ public class DefaultSecurityConfig {
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests(authorizeRequests ->
-				authorizeRequests.anyRequest().authenticated()
-			)
-			.formLogin(withDefaults());
+			.mvcMatcher("/messages/**")
+				.authorizeRequests()
+					.mvcMatchers("/messages/**").access("hasAuthority('SCOPE_message.read')")
+					.and()
+					.authorizeRequests(authorizeRequests ->
+						authorizeRequests.anyRequest().authenticated()
+					).formLogin(withDefaults())
+			.oauth2ResourceServer()
+				.jwt();
 		return http.build();
 	}
 	// @formatter:on

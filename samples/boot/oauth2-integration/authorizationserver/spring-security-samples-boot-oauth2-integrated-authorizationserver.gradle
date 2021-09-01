@@ -6,6 +6,7 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 	compile project(':spring-security-oauth2-authorization-server')
 	runtimeOnly 'com.h2database:h2'
+	compile 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'net.sourceforge.htmlunit:htmlunit'
