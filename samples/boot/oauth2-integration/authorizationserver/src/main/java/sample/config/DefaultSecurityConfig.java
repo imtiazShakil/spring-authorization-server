@@ -40,7 +40,8 @@ public class DefaultSecurityConfig {
 			.authorizeRequests(authorizeRequests ->
 				authorizeRequests.anyRequest().authenticated()
 			)
-			.formLogin(withDefaults());
+			.formLogin(withDefaults())
+				.rememberMe().key("mykey").userDetailsService(users());
 		return http.build();
 	}
 	// @formatter:on
